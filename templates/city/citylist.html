@@ -1,0 +1,42 @@
+{% extends 'index.html' %}
+{% block title %} 上海{% endblock %}
+<body>
+{% block content %}
+
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-sm-6" >
+                <h1 align="center"> 上海</h1>
+
+            </div>
+            <div class="col-sm-6">
+                <img src="https://www.google.com/maps/vt/data=Nmmn4hmxl_0149_8iB2CNU_hpzMR8v5ih51U08fC68jvD964GEfD00iNKHxIlu6jPtW3GINNlQCZxnQ2wkD_78fFy0qPMfqgY55yEkEeKK3YSF4zL9MZc01FuYn4EXv_iW1V1lb2k8a4PbpwMnCSSYkROXs7ro1Gn93jxtLdEk0vJ0MCs17yTUni28hrUj0n2GqaJyeFaGbTAihoa5KWJ4qsvJ5yyQIZK8Pr7DyGtRmPQZ2AsCKRNkvcmV8" alt="shanghai">
+            </div>
+        </div>
+    </div>
+
+    <div class="container" align="center">
+        <br>
+        <div id="bar" style="width:1000px; height:600px;"></div>
+        <script>
+        $(
+                function () {
+                    var chart = echarts.init(document.getElementById('bar'), 'white', {renderer: 'canvas'});
+                    $.ajax({
+                        type: "GET",
+                        url: "../city/bar",
+                        dataType: 'json',
+                        success: function (result) {
+                            chart.setOption(result.data);
+                        }
+                    });
+                }
+            )
+        </script>
+    </div>
+    <br>
+
+
+{% endblock %}
+</body>
+</html>

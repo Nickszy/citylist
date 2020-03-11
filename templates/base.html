@@ -1,0 +1,96 @@
+<html>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no,shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>{% block title %}城市清单{% endblock %}</title>
+  </head>
+  <body>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script>
+{#    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>#}
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/world.js"></script>
+    <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=9d9tdoPPP0qoG8YOVrIwa8lcQItSyfU7"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
+
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+            <a class="navbar-brand" href="../">城市清单</a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon">dhsiadhs</span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../city">城市</a>
+                  </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../env">环境</a>
+                  </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../job">工作</a>
+                  </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../topic">专题</a>
+                  </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="http://nickszy.coldpoker.xyz">author</a>
+                  </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0" action="/" method="get">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" name="city" aria-label="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container">
+        {% block content %}
+
+        {% endblock %}
+    </div>
+
+
+    <div class="container">
+        <footer class="footer navbar-fixed-bottom" >
+          <div class="container">
+              <br>
+              <p></p>
+              <p>copyright@城市清单🏠 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; shenzheyu4416@outlook.com </p>
+          </div>
+        </footer>
+    </div>
+
+
+
+  <style>
+      .footer {
+          bottom: 0;
+          width: 100%;
+          /* Set the fixed height of the footer here */
+          height: 90px;
+          text-align: center;
+          {#border-top: .05rem solid #e5e5e5;#}
+          {#    position: absolute;#}
+            left: 0;
+          background-color: #e9ecef;
+        }
+  </style>
+  </body>
+</html>
