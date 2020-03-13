@@ -35,6 +35,63 @@
         </script>
     </div>
     <br>
+    <div class="container-fluid">
+        <div id="map" style="width: 600px; height: 400px;"></div>
+        <script type="text/javascript">
+            var map = echarts.init(document.getElementById('map'),{renderer:'svg'});
+            options = {
+                geo: {
+                            map: 'china',
+                            roam: true,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    textStyle: {
+                                        color: 'rgba(0,0,0,0.4)'
+                                    }
+                                }
+                            },
+                            itemStyle: {
+                                normal:{
+                                    borderColor: 'rgba(10, 21, 21, 8)'
+                                },
+                                emphasis:{
+                                    color: '#fff' ,
+                                    areaColor: '#fff',
+                                    shadowOffsetX: 0,
+                                    shadowOffsetY: 0,
+                                    shadowBlur: 20,
+                                    borderWidth: 0,
+                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                }
+                            }
+                        },
+                {#series : [#}
+                {#           {#}
+                {#               name: 'world',#}
+                {#               type: 'scatter',#}
+                {#               coordinateSystem: 'geo',#}
+                {#               label: {#}
+                {#                   normal: {#}
+                {#                       position: 'right',#}
+                {#                       show: false#}
+                {#                   },#}
+                {#                   emphasis: {#}
+                {#                       show: true#}
+                {#                   }#}
+                {#               },#}
+                {#               itemStyle: {#}
+                {#                   normal: {#}
+                {#                       color: '#ddb926'#}
+                {#                   }#}
+                {#               }#}
+                {#            }]#}
+            };
+            map.setOption(options);
+
+        </script>
+
+    </div>
 
 
 {% endblock %}
