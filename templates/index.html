@@ -27,462 +27,753 @@
         </div>
     </div>
 
-    <div class="container-fluid">
-        <div class="row mb-2">
-        <div class="col-md-6">
-          <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-            <div class="col p-4 d-flex flex-column position-static">
-              <strong class="d-inline-block mb-2 text-primary">🎉🎉🎉</strong>
-              <h3 class="mb-0">杭州</h3>
-              <div class="mb-1 text-muted">长三角</div>
-              <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-              <a href="#">Continue reading</a>
-            </div>
-            <div class="col-auto d-none d-lg-block">
-                    <div id="hz" style="width: 200px;height:250px;"></div>
-                    <script>
-                        place = '浙江省/杭州市'
-                        url = "../static/chinaMapJsonData/"+place+"/datas.json"
-                        $.get(url,function (geojson) {
-                            echarts.registerMap(place,geojson);
-                            var chart = echarts.init(document.getElementById('hz'),{renderer:'svg'});
-                            chart.setOption({
-                                series: [{
-                                    type: 'map',
-                                    mapType: place,
-                                    label:{
-                                        show: true
-                                    }
-                                }]
-                            });
-                              });
-                    </script>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="row border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250">
-            <div class="col p-4 d-flex flex-column position-relative">
-              <strong class="d-inline-block mb-2 text-success">长三角 南太湖</strong>
-              <h3 class="mb-0">湖州市</h3>
-              <div class="mb-1 text-muted">🏔🌲🌊</div>
-              <p class="mb-auto">这是我家世界独额废话复活是服到付沙发覅U盾师傅带好看复活的时候怕发生的股票啊师傅还是到付好屌丝U回复数的方法</p>
-              <a href="#" class="stretched-link">Continue reading</a>
-            </div>
-            <div class="col-auto d-none d-lg-block">
-{#              <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>#}
-            </div>
-                  <div id="zj" style="width: 250px"></div>
-                    <script>
-                        place = '浙江省/湖州市'
-                        url = "../static/chinaMapJsonData/"+place+"/datas.json"
-                        $.get(url,function (geojson) {
-                            echarts.registerMap(place,geojson);
-                            var chart = echarts.init(document.getElementById('zj'),{renderer:'svg'});
-                            chart.setOption({
-                                series: [{
-                                    type: 'map',
-                                    mapType: place,
-                                    label:{
-                                        show: true
-                                    }
-                                }]
-                            });
-                              });
-                    </script>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div id="demo" style="width: 800px;height:600px;"></div>
-    <script type="text/javascript" src="../static/map/js/province/beijing.js"></script>
-    <script>
-    var chart = echarts.init(document.getElementById('demo'),{renderer:'svg'});
-    chart.setOption({
-        title:{
-            text: '北京',
-            left: 'center'
-        },
-        series: [{
-            type: 'map',
-            mapType: '北京',
-            label: {
-					normal: {
-						show: true,
-                        position: 'bottom'
-					},
-					emphasis: {
-						show: true
-					}
-				}
-        }]
-    });
-    </script>
+    <hr class="featurette-divider">
 
-    <div class="container-fluid">
-
-        <div class="row">
-            <div class="col-sm-6">
-                <p>决战长三角</p>
-            </div>
-            <div class="col-sm-6">
-            
-            </div>
-        </div>
-    </div>
-
-    <div class="container" align="center">
-    <div id="chart" style="width:1000px; height:600px;"></div>
-    </div>
-       <script type="text/javascript">
-            var dom = document.getElementById("chart");
-            var myChart = echarts.init(dom);
-            var app = {};
-            option = null;
-
-            $.when(
-                $.getScript('https://www.echartsjs.com/examples/data/asset/data/timelineGDP.js'),
-            ).done(function () {
-
-                myChart.hideLoading();
-
-                var categoryData = [
-                    '北京','天津','河北','山西','内蒙古','辽宁','吉林','黑龙江',
-                    '上海','江苏','浙江','安徽','福建','江西','山东','河南',
-                    '湖北','湖南','广东','广西','海南','重庆','四川','贵州',
-                    '云南','西藏','陕西','甘肃','青海','宁夏','新疆'
-                ];
-
-
-                option = {
-                    baseOption: {
-                        timeline: {
-                            axisType: 'category',
-                            autoPlay: true,
-                            playInterval: 4000,
-                            data: [
-                                '2002-01-01', '2003-01-01', '2004-01-01',
-                                '2005-01-01', '2006-01-01', '2007-01-01',
-                                '2008-01-01', '2009-01-01', '2010-01-01',
-                                '2011-01-01'
-                            ],
-                            label: {
-                                formatter : function(s) {
-                                    return (new Date(s)).getFullYear();
-                                }
-                            }
-                        },
-                        title: {
-                            subtext: '数据来源： 中经网'
-                        },
-                        tooltip: {
-                            trigger:'axis',
-                            axisPointer: {
-                                type: 'shadow'
-                            }
-                        },
-                        xAxis: {
-                            type: 'value',
-                            name: 'GDP（亿元）',
-                            max: 30000,
-                            data: null
-                        },
-                        yAxis: {
-                            type: 'category',
-                            data: categoryData,
-                            axisLabel: {interval: 0},
-                            splitLine: {show: false}
-                        },
+    <div class="row featurette">
+        <div class="col-sm-6">
+            <div id="leida" style="width: 500px; height: 400px" align="center"></div>
+                <script type="text/javascript">
+                    var leida = echarts.init(document.getElementById("leida"));
+                    options = {
+                        {#backgroundColor: 'white',#}
+                        {#title:{#}
+                        {#  text: "城市评分雷达图",#}
+                        {#    textStyle:{#}
+                        {#      width: '100%',#}
+                        {#        height: '30px'#}
+                        {#    }#}
+                        {#},#}
+                        color: ['#3D91F7', '#61BE67'],
+                        tooltip: {},
                         legend: {
-                            data: ['第一产业', '第二产业', '第三产业', 'GDP', '金融', '房地产'],
-                            selected: {
-                                'GDP': false, '金融': false, '房地产': false
-                            }
+                            show: true,
+                            icon: "circle",
+                            bottom: 30,
+                            center: 0,
+                            itemWidth: 14,
+                            itemHeight: 14,
+                            itemGap: 21,
+                            orient: "horizontal",
+                            data: ['a', 'b'],
+                            textStyle: {
+                                fontSize: '70%',
+                                color: '#8C8C8C'
+                            },
                         },
-                        calculable : true,
-                        series: [
-                            {name: 'GDP', type: 'bar'},
-                            {name: '金融', type: 'bar'},
-                            {name: '房地产', type: 'bar'},
-                            {name: '第一产业', type: 'bar'},
-                            {name: '第二产业', type: 'bar'},
-                            {name: '第三产业', type: 'bar'},
-                            {name: 'GDP占比', type: 'pie'}
-                        ]
-                    },
-                    media: [
-                        {
-                            option: {
-                                legend: {
-                                    orient: 'horizontal',
-                                    left: 'right',
-                                    itemGap: 10
-                                },
-                                grid: {
-                                    left: '10%',
-                                    top: 80,
-                                    right: 90,
-                                    bottom: 100
-                                },
-                                xAxis: {
-                                    nameLocation: 'end',
-                                    nameGap: 10,
-                                    splitNumber: 5,
-                                    splitLine: {
-                                        show: true
-                                    }
-                                },
-                                timeline: {
-                                    orient: 'horizontal',
-                                    inverse: false,
-                                    left: '20%',
-                                    right: '20%',
-                                    bottom: 10,
-                                    height: 40
-                                },
-                                series: [
-                                    {name: 'GDP占比', center: ['75%', '30%'], radius: '28%'}
-                                ]
-                            }
-                        },
-                        {
-                            query: {maxWidth: 670, minWidth: 550},
-                            option: {
-                                legend: {
-                                    orient: 'horizontal',
-                                    left: 200,
-                                    itemGap: 5
-                                },
-                                grid: {
-                                    left: '10%',
-                                    top: 80,
-                                    right: 90,
-                                    bottom: 100
-                                },
-                                xAxis: {
-                                    nameLocation: 'end',
-                                    nameGap: 10,
-                                    splitNumber: 5,
-                                    splitLine: {
-                                        show: true
-                                    }
-                                },
-                                timeline: {
-                                    orient: 'horizontal',
-                                    inverse: false,
-                                    left: '20%',
-                                    right: '20%',
-                                    bottom: 10,
-                                    height: 40
-                                },
-                                series: [
-                                    {name: 'GDP占比', center: ['75%', '30%'], radius: '28%'}
-                                ]
-                            }
-                        },
-                        {
-                            query: {maxWidth: 550},
-                            option: {
-                                legend: {
-                                    orient: 'vertical',
-                                    left: 'right',
-                                    itemGap: 5
-                                },
-                                grid: {
-                                    left: 55,
-                                    top: '32%',
-                                    right: 100,
-                                    bottom: 50
-                                },
-                                xAxis: {
-                                    nameLocation: 'middle',
-                                    nameGap: 25,
-                                    splitNumber: 3
-                                },
-                                timeline: {
-                                    orient: 'vertical',
-                                    inverse: true,
-                                    right: 10,
-                                    top: 150,
-                                    bottom: 10,
-                                    width: 55
-                                },
-                                series: [
-                                    {name: 'GDP占比', center: ['45%', '20%'], radius: '28%'}
-                                ]
-                            }
-                        }
-                    ],
-                    options: [
-                        {
-                            title: {text: '2002全国宏观经济指标'},
-                            series: [
-                                {data: dataMap.dataGDP['2002']},
-                                {data: dataMap.dataFinancial['2002']},
-                                {data: dataMap.dataEstate['2002']},
-                                {data: dataMap.dataPI['2002']},
-                                {data: dataMap.dataSI['2002']},
-                                {data: dataMap.dataTI['2002']},
-                                {data: [
-                                    {name: '第一产业', value: dataMap.dataPI['2002sum']},
-                                    {name: '第二产业', value: dataMap.dataSI['2002sum']},
-                                    {name: '第三产业', value: dataMap.dataTI['2002sum']}
-                                ]}
-                            ]
-                        },
-                        {
-                            title : {text: '2003全国宏观经济指标'},
-                            series : [
-                                {data: dataMap.dataGDP['2003']},
-                                {data: dataMap.dataFinancial['2003']},
-                                {data: dataMap.dataEstate['2003']},
-                                {data: dataMap.dataPI['2003']},
-                                {data: dataMap.dataSI['2003']},
-                                {data: dataMap.dataTI['2003']},
-                                {data: [
-                                    {name: '第一产业', value: dataMap.dataPI['2003sum']},
-                                    {name: '第二产业', value: dataMap.dataSI['2003sum']},
-                                    {name: '第三产业', value: dataMap.dataTI['2003sum']}
-                                ]}
-                            ]
-                        },
-                        {
-                            title : {text: '2004全国宏观经济指标'},
-                            series : [
-                                {data: dataMap.dataGDP['2004']},
-                                {data: dataMap.dataFinancial['2004']},
-                                {data: dataMap.dataEstate['2004']},
-                                {data: dataMap.dataPI['2004']},
-                                {data: dataMap.dataSI['2004']},
-                                {data: dataMap.dataTI['2004']},
-                                {data: [
-                                    {name: '第一产业', value: dataMap.dataPI['2004sum']},
-                                    {name: '第二产业', value: dataMap.dataSI['2004sum']},
-                                    {name: '第三产业', value: dataMap.dataTI['2004sum']}
-                                ]}
-                            ]
-                        },
-                        {
-                            title : {text: '2005全国宏观经济指标'},
-                            series : [
-                                {data: dataMap.dataGDP['2005']},
-                                {data: dataMap.dataFinancial['2005']},
-                                {data: dataMap.dataEstate['2005']},
-                                {data: dataMap.dataPI['2005']},
-                                {data: dataMap.dataSI['2005']},
-                                {data: dataMap.dataTI['2005']},
-                                {data: [
-                                    {name: '第一产业', value: dataMap.dataPI['2005sum']},
-                                    {name: '第二产业', value: dataMap.dataSI['2005sum']},
-                                    {name: '第三产业', value: dataMap.dataTI['2005sum']}
-                                ]}
-                            ]
-                        },
-                        {
-                            title : {text: '2006全国宏观经济指标'},
-                            series : [
-                                {data: dataMap.dataGDP['2006']},
-                                {data: dataMap.dataFinancial['2006']},
-                                {data: dataMap.dataEstate['2006']},
-                                {data: dataMap.dataPI['2006']},
-                                {data: dataMap.dataSI['2006']},
-                                {data: dataMap.dataTI['2006']},
-                                {data: [
-                                    {name: '第一产业', value: dataMap.dataPI['2006sum']},
-                                    {name: '第二产业', value: dataMap.dataSI['2006sum']},
-                                    {name: '第三产业', value: dataMap.dataTI['2006sum']}
-                                ]}
-                            ]
-                        },
-                        {
-                            title : {text: '2007全国宏观经济指标'},
-                            series : [
-                                {data: dataMap.dataGDP['2007']},
-                                {data: dataMap.dataFinancial['2007']},
-                                {data: dataMap.dataEstate['2007']},
-                                {data: dataMap.dataPI['2007']},
-                                {data: dataMap.dataSI['2007']},
-                                {data: dataMap.dataTI['2007']},
-                                {data: [
-                                    {name: '第一产业', value: dataMap.dataPI['2007sum']},
-                                    {name: '第二产业', value: dataMap.dataSI['2007sum']},
-                                    {name: '第三产业', value: dataMap.dataTI['2007sum']}
-                                ]}
-                            ]
-                        },
-                        {
-                            title : {text: '2008全国宏观经济指标'},
-                            series : [
-                                {data: dataMap.dataGDP['2008']},
-                                {data: dataMap.dataFinancial['2008']},
-                                {data: dataMap.dataEstate['2008']},
-                                {data: dataMap.dataPI['2008']},
-                                {data: dataMap.dataSI['2008']},
-                                {data: dataMap.dataTI['2008']},
-                                {data: [
-                                    {name: '第一产业', value: dataMap.dataPI['2008sum']},
-                                    {name: '第二产业', value: dataMap.dataSI['2008sum']},
-                                    {name: '第三产业', value: dataMap.dataTI['2008sum']}
-                                ]}
-                            ]
-                        },
-                        {
-                            title : {text: '2009全国宏观经济指标'},
-                            series : [
-                                {data: dataMap.dataGDP['2009']},
-                                {data: dataMap.dataFinancial['2009']},
-                                {data: dataMap.dataEstate['2009']},
-                                {data: dataMap.dataPI['2009']},
-                                {data: dataMap.dataSI['2009']},
-                                {data: dataMap.dataTI['2009']},
-                                {data: [
-                                    {name: '第一产业', value: dataMap.dataPI['2009sum']},
-                                    {name: '第二产业', value: dataMap.dataSI['2009sum']},
-                                    {name: '第三产业', value: dataMap.dataTI['2009sum']}
-                                ]}
-                            ]
-                        },
-                        {
-                            title : {text: '2010全国宏观经济指标'},
-                            series : [
-                                {data: dataMap.dataGDP['2010']},
-                                {data: dataMap.dataFinancial['2010']},
-                                {data: dataMap.dataEstate['2010']},
-                                {data: dataMap.dataPI['2010']},
-                                {data: dataMap.dataSI['2010']},
-                                {data: dataMap.dataTI['2010']},
-                                {data: [
-                                    {name: '第一产业', value: dataMap.dataPI['2010sum']},
-                                    {name: '第二产业', value: dataMap.dataSI['2010sum']},
-                                    {name: '第三产业', value: dataMap.dataTI['2010sum']}
-                                ]}
-                            ]
-                        },
-                        {
-                            title : {text: '2011全国宏观经济指标'},
-                            series : [
-                                {data: dataMap.dataGDP['2011']},
-                                {data: dataMap.dataFinancial['2011']},
-                                {data: dataMap.dataEstate['2011']},
-                                {data: dataMap.dataPI['2011']},
-                                {data: dataMap.dataSI['2011']},
-                                {data: dataMap.dataTI['2011']},
-                                {data: [
-                                    {name: '第一产业', value: dataMap.dataPI['2011sum']},
-                                    {name: '第二产业', value: dataMap.dataSI['2011sum']},
-                                    {name: '第三产业', value: dataMap.dataTI['2011sum']}
-                                ]}
-                            ]
-                        }
-                    ]
-                };
 
-                myChart.setOption(option);
+                        radar: {
+                            {#shape: 'circle',#}
+                            radius:'80%',
+                            triggerEvent: true,
+                            name: {
+                                textStyle: {
+                                    color: '#000000',
+                                    fontSize:'20',
+                                    borderRadius: 3,
+                                    padding: [3, 5]
+                                }
+                            },
+                            nameGap:'2',
+                            indicator: [{//[4300, 10000, 28000, 35000, 50000, 19000, 21000]
+                                    name: '医疗', max: 6500},
+                                {name: '交通', max: 16000},
+                                {name: '教育', max: 30000 },
+                                {name: '环境', max: 38000},
+                                {name: '工作机会',max: 52000},
+                                {name: '生活成本', max: 25000},
+                            ],
+                            splitArea: {
+                                areaStyle: {
+                                     color: [
+                                             'rgba(222,134,85, 0.1)', 'rgba(222,134,85, 0.2)',
+                                             'rgba(222,134,85, 0.4)', 'rgba(222,134,85, 0.6)',
+                                             'rgba(222,134,85, 0.8)', 'rgba(222,134,85, 1)'
+                                         ].reverse()
+                                }
+                            },
+                            axisLabel:{//展示刻度
+                                show: true
+                            },
+                            axisLine: { //指向外圈文本的分隔线样式
+                                lineStyle: {
+                                    color: 'rgba(0,0,0,0)'
+                                }
+                            },
+                            splitLine: {
+                                lineStyle: {
+                                    width:2,
+                                    color: [
+                                        'rgba(224,134,82, 0.1)', 'rgba(224,134,82, 0.2)',
+                                        'rgba(224,134,82, 0.4)', 'rgba(224,134,82, 0.6)',
+                                        'rgba(224,134,82, 0.8)', 'rgba(224,134,82, 1)'
+                                    ].reverse()
+                                }
+                            },
 
-            });
-            if (option && typeof option === "object") {
-                myChart.setOption(option, true);
-            }
-       </script>
+                        },
+
+                        series: [{
+                            name: '一级权重分析',
+                            type: 'radar',
+                            //areaStyle: {normal: {}},
+                            areaStyle: {
+                                normal: {
+                                    color: 'rgba(252,211,3, 0.3)'
+                                }
+                            },
+                            symbolSize: 0,
+                            lineStyle: {
+                                normal: {
+                                    color: 'rgba(252,211,3, 1)',
+                                    width: 1
+                                }
+                            },
+                            data: [{
+                                    value: [4300, 10000, 28000, 35000, 50000, 19000],
+                                    name: '因素',
+
+
+
+                                }
+                            ]
+                        }]
+                    };
+                    leida.setOption(options);
+                </script>
+        </div>
+        <div class="col-sm-6 mb-4">
+            <h1 align="center"> 城市指标体系 </h1>
+            <h3 align="center">雷达图</h3>
+            <br>
+            <p align="center">通过历史数据，计算得出城市不同维度的分数</p>
+        </div>
+    </div>
+
+    <hr class="featurette-divider">
+    <div class="row featurette">
+        <div class="col-sm-6 mb-4">
+            <h1 align="center"> 城市友好度 </h1>
+            <h3 align="center">条形图</h3>
+            <br>
+            <p align="center">通过历史数据，计算得出城市不同维度的分数</p>
+        </div>
+            <div class="col-sm-6">
+            <div id="youhao" style="width: 500px; height: 400px" align="center"></div>
+                <script type="text/javascript">
+                    var leida = echarts.init(document.getElementById("youhao"));
+                    options = {
+                        {#backgroundColor: 'white',#}
+                        {#title:{#}
+                        {#  text: "城市评分雷达图",#}
+                        {#    textStyle:{#}
+                        {#      width: '100%',#}
+                        {#        height: '30px'#}
+                        {#    }#}
+                        {#},#}
+                        color: ['#3D91F7', '#61BE67'],
+                        tooltip: {},
+                        legend: {
+                            show: true,
+                            icon: "circle",
+                            bottom: 30,
+                            center: 0,
+                            itemWidth: 14,
+                            itemHeight: 14,
+                            itemGap: 21,
+                            orient: "horizontal",
+                            data: ['a', 'b'],
+                            textStyle: {
+                                fontSize: '70%',
+                                color: '#8C8C8C'
+                            },
+                        },
+
+                        radar: {
+                            {#shape: 'circle',#}
+                            radius:'80%',
+                            triggerEvent: true,
+                            name: {
+                                textStyle: {
+                                    color: '#000000',
+                                    fontSize:'20',
+                                    borderRadius: 3,
+                                    padding: [3, 5]
+                                }
+                            },
+                            nameGap:'2',
+                            indicator: [{//[4300, 10000, 28000, 35000, 50000, 19000, 21000]
+                                    name: '医疗', max: 6500},
+                                {name: '交通', max: 16000},
+                                {name: '教育', max: 30000 },
+                                {name: '环境', max: 38000},
+                                {name: '工作机会',max: 52000},
+                                {name: '生活成本', max: 25000},
+                            ],
+                            splitArea: {
+                                areaStyle: {
+                                     color: [
+                                             'rgba(222,134,85, 0.1)', 'rgba(222,134,85, 0.2)',
+                                             'rgba(222,134,85, 0.4)', 'rgba(222,134,85, 0.6)',
+                                             'rgba(222,134,85, 0.8)', 'rgba(222,134,85, 1)'
+                                         ].reverse()
+                                }
+                            },
+                            axisLabel:{//展示刻度
+                                show: true
+                            },
+                            axisLine: { //指向外圈文本的分隔线样式
+                                lineStyle: {
+                                    color: 'rgba(0,0,0,0)'
+                                }
+                            },
+                            splitLine: {
+                                lineStyle: {
+                                    width:2,
+                                    color: [
+                                        'rgba(224,134,82, 0.1)', 'rgba(224,134,82, 0.2)',
+                                        'rgba(224,134,82, 0.4)', 'rgba(224,134,82, 0.6)',
+                                        'rgba(224,134,82, 0.8)', 'rgba(224,134,82, 1)'
+                                    ].reverse()
+                                }
+                            },
+
+                        },
+
+                        series: [{
+                            name: '一级权重分析',
+                            type: 'radar',
+                            //areaStyle: {normal: {}},
+                            areaStyle: {
+                                normal: {
+                                    color: 'rgba(252,211,3, 0.3)'
+                                }
+                            },
+                            symbolSize: 0,
+                            lineStyle: {
+                                normal: {
+                                    color: 'rgba(252,211,3, 1)',
+                                    width: 1
+                                }
+                            },
+                            data: [{
+                                    value: [4300, 10000, 28000, 35000, 50000, 19000],
+                                    name: '因素',
+
+
+
+                                }
+                            ]
+                        }]
+                    };
+                    leida.setOption(options);
+                </script>
+        </div>
+
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+        <div class="col-sm-6">
+            <div id="dichan" style="width: 500px; height: 400px" align="center"></div>
+                <script type="text/javascript">
+                    var leida = echarts.init(document.getElementById("dichan"));
+                    options = {
+                        {#backgroundColor: 'white',#}
+                        {#title:{#}
+                        {#  text: "城市评分雷达图",#}
+                        {#    textStyle:{#}
+                        {#      width: '100%',#}
+                        {#        height: '30px'#}
+                        {#    }#}
+                        {#},#}
+                        color: ['#3D91F7', '#61BE67'],
+                        tooltip: {},
+                        legend: {
+                            show: true,
+                            icon: "circle",
+                            bottom: 30,
+                            center: 0,
+                            itemWidth: 14,
+                            itemHeight: 14,
+                            itemGap: 21,
+                            orient: "horizontal",
+                            data: ['a', 'b'],
+                            textStyle: {
+                                fontSize: '70%',
+                                color: '#8C8C8C'
+                            },
+                        },
+
+                        radar: {
+                            {#shape: 'circle',#}
+                            radius:'80%',
+                            triggerEvent: true,
+                            name: {
+                                textStyle: {
+                                    color: '#000000',
+                                    fontSize:'20',
+                                    borderRadius: 3,
+                                    padding: [3, 5]
+                                }
+                            },
+                            nameGap:'2',
+                            indicator: [{//[4300, 10000, 28000, 35000, 50000, 19000, 21000]
+                                    name: '医疗', max: 6500},
+                                {name: '交通', max: 16000},
+                                {name: '教育', max: 30000 },
+                                {name: '环境', max: 38000},
+                                {name: '工作机会',max: 52000},
+                                {name: '生活成本', max: 25000},
+                            ],
+                            splitArea: {
+                                areaStyle: {
+                                     color: [
+                                             'rgba(222,134,85, 0.1)', 'rgba(222,134,85, 0.2)',
+                                             'rgba(222,134,85, 0.4)', 'rgba(222,134,85, 0.6)',
+                                             'rgba(222,134,85, 0.8)', 'rgba(222,134,85, 1)'
+                                         ].reverse()
+                                }
+                            },
+                            axisLabel:{//展示刻度
+                                show: true
+                            },
+                            axisLine: { //指向外圈文本的分隔线样式
+                                lineStyle: {
+                                    color: 'rgba(0,0,0,0)'
+                                }
+                            },
+                            splitLine: {
+                                lineStyle: {
+                                    width:2,
+                                    color: [
+                                        'rgba(224,134,82, 0.1)', 'rgba(224,134,82, 0.2)',
+                                        'rgba(224,134,82, 0.4)', 'rgba(224,134,82, 0.6)',
+                                        'rgba(224,134,82, 0.8)', 'rgba(224,134,82, 1)'
+                                    ].reverse()
+                                }
+                            },
+
+                        },
+
+                        series: [{
+                            name: '一级权重分析',
+                            type: 'radar',
+                            //areaStyle: {normal: {}},
+                            areaStyle: {
+                                normal: {
+                                    color: 'rgba(252,211,3, 0.3)'
+                                }
+                            },
+                            symbolSize: 0,
+                            lineStyle: {
+                                normal: {
+                                    color: 'rgba(252,211,3, 1)',
+                                    width: 1
+                                }
+                            },
+                            data: [{
+                                    value: [4300, 10000, 28000, 35000, 50000, 19000],
+                                    name: '因素',
+
+
+
+                                }
+                            ]
+                        }]
+                    };
+                    leida.setOption(options);
+                </script>
+        </div>
+        <div class="col-sm-6 mb-4">
+            <h1 align="center"> 房价变化走势 </h1>
+            <h3 align="center">折线图</h3>
+            <br>
+            <p align="center">通过历史数据，计算得出城市不同维度的分数</p>
+        </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+
+{##}
+{#    <div id="demo" style="width:300px;height: 200px"></div>#}
+{#    <script type="text/javascript" src="../static/map/js/province/beijing.js"></script>#}
+{#    <script>#}
+{#    var chart = echarts.init(document.getElementById('demo'),{renderer:'svg'});#}
+{#    chart.setOption({#}
+{#        title:{#}
+{#            text: '北京',#}
+{#            left: 'center'#}
+{#        },#}
+{#        series: [{#}
+{#            type: 'map',#}
+{#            mapType: '北京',#}
+{#            label: {#}
+{#					normal: {#}
+{#						show: true,#}
+{#                        position: 'bottom'#}
+{#					},#}
+{#					emphasis: {#}
+{#						show: true#}
+{#					}#}
+{#				}#}
+{#        }]#}
+{#    });#}
+{#    </script>#}
+
+{#    <div class="container" align="center">#}
+{#    <div id="chart" style="width:1000px; height:600px;"></div>#}
+{#    </div>#}
+{#       <script type="text/javascript">#}
+{#            var dom = document.getElementById("chart");#}
+{#            var myChart = echarts.init(dom);#}
+{#            var app = {};#}
+{#            option = null;#}
+{##}
+{#            $.when(#}
+{#                $.getScript('https://www.echartsjs.com/examples/data/asset/data/timelineGDP.js'),#}
+{#            ).done(function () {#}
+{##}
+{#                myChart.hideLoading();#}
+{##}
+{#                var categoryData = [#}
+{#                    '北京','天津','河北','山西','内蒙古','辽宁','吉林','黑龙江',#}
+{#                    '上海','江苏','浙江','安徽','福建','江西','山东','河南',#}
+{#                    '湖北','湖南','广东','广西','海南','重庆','四川','贵州',#}
+{#                    '云南','西藏','陕西','甘肃','青海','宁夏','新疆'#}
+{#                ];#}
+{##}
+{##}
+{#                option = {#}
+{#                    baseOption: {#}
+{#                        timeline: {#}
+{#                            axisType: 'category',#}
+{#                            autoPlay: true,#}
+{#                            playInterval: 4000,#}
+{#                            data: [#}
+{#                                '2002-01-01', '2003-01-01', '2004-01-01',#}
+{#                                '2005-01-01', '2006-01-01', '2007-01-01',#}
+{#                                '2008-01-01', '2009-01-01', '2010-01-01',#}
+{#                                '2011-01-01'#}
+{#                            ],#}
+{#                            label: {#}
+{#                                formatter : function(s) {#}
+{#                                    return (new Date(s)).getFullYear();#}
+{#                                }#}
+{#                            }#}
+{#                        },#}
+{#                        title: {#}
+{#                            subtext: '数据来源： 中经网'#}
+{#                        },#}
+{#                        tooltip: {#}
+{#                            trigger:'axis',#}
+{#                            axisPointer: {#}
+{#                                type: 'shadow'#}
+{#                            }#}
+{#                        },#}
+{#                        xAxis: {#}
+{#                            type: 'value',#}
+{#                            name: 'GDP（亿元）',#}
+{#                            max: 30000,#}
+{#                            data: null#}
+{#                        },#}
+{#                        yAxis: {#}
+{#                            type: 'category',#}
+{#                            data: categoryData,#}
+{#                            axisLabel: {interval: 0},#}
+{#                            splitLine: {show: false}#}
+{#                        },#}
+{#                        legend: {#}
+{#                            data: ['第一产业', '第二产业', '第三产业', 'GDP', '金融', '房地产'],#}
+{#                            selected: {#}
+{#                                'GDP': false, '金融': false, '房地产': false#}
+{#                            }#}
+{#                        },#}
+{#                        calculable : true,#}
+{#                        series: [#}
+{#                            {name: 'GDP', type: 'bar'},#}
+{#                            {name: '金融', type: 'bar'},#}
+{#                            {name: '房地产', type: 'bar'},#}
+{#                            {name: '第一产业', type: 'bar'},#}
+{#                            {name: '第二产业', type: 'bar'},#}
+{#                            {name: '第三产业', type: 'bar'},#}
+{#                            {name: 'GDP占比', type: 'pie'}#}
+{#                        ]#}
+{#                    },#}
+{#                    media: [#}
+{#                        {#}
+{#                            option: {#}
+{#                                legend: {#}
+{#                                    orient: 'horizontal',#}
+{#                                    left: 'right',#}
+{#                                    itemGap: 10#}
+{#                                },#}
+{#                                grid: {#}
+{#                                    left: '10%',#}
+{#                                    top: 80,#}
+{#                                    right: 90,#}
+{#                                    bottom: 100#}
+{#                                },#}
+{#                                xAxis: {#}
+{#                                    nameLocation: 'end',#}
+{#                                    nameGap: 10,#}
+{#                                    splitNumber: 5,#}
+{#                                    splitLine: {#}
+{#                                        show: true#}
+{#                                    }#}
+{#                                },#}
+{#                                timeline: {#}
+{#                                    orient: 'horizontal',#}
+{#                                    inverse: false,#}
+{#                                    left: '20%',#}
+{#                                    right: '20%',#}
+{#                                    bottom: 10,#}
+{#                                    height: 40#}
+{#                                },#}
+{#                                series: [#}
+{#                                    {name: 'GDP占比', center: ['75%', '30%'], radius: '28%'}#}
+{#                                ]#}
+{#                            }#}
+{#                        },#}
+{#                        {#}
+{#                            query: {maxWidth: 670, minWidth: 550},#}
+{#                            option: {#}
+{#                                legend: {#}
+{#                                    orient: 'horizontal',#}
+{#                                    left: 200,#}
+{#                                    itemGap: 5#}
+{#                                },#}
+{#                                grid: {#}
+{#                                    left: '10%',#}
+{#                                    top: 80,#}
+{#                                    right: 90,#}
+{#                                    bottom: 100#}
+{#                                },#}
+{#                                xAxis: {#}
+{#                                    nameLocation: 'end',#}
+{#                                    nameGap: 10,#}
+{#                                    splitNumber: 5,#}
+{#                                    splitLine: {#}
+{#                                        show: true#}
+{#                                    }#}
+{#                                },#}
+{#                                timeline: {#}
+{#                                    orient: 'horizontal',#}
+{#                                    inverse: false,#}
+{#                                    left: '20%',#}
+{#                                    right: '20%',#}
+{#                                    bottom: 10,#}
+{#                                    height: 40#}
+{#                                },#}
+{#                                series: [#}
+{#                                    {name: 'GDP占比', center: ['75%', '30%'], radius: '28%'}#}
+{#                                ]#}
+{#                            }#}
+{#                        },#}
+{#                        {#}
+{#                            query: {maxWidth: 550},#}
+{#                            option: {#}
+{#                                legend: {#}
+{#                                    orient: 'vertical',#}
+{#                                    left: 'right',#}
+{#                                    itemGap: 5#}
+{#                                },#}
+{#                                grid: {#}
+{#                                    left: 55,#}
+{#                                    top: '32%',#}
+{#                                    right: 100,#}
+{#                                    bottom: 50#}
+{#                                },#}
+{#                                xAxis: {#}
+{#                                    nameLocation: 'middle',#}
+{#                                    nameGap: 25,#}
+{#                                    splitNumber: 3#}
+{#                                },#}
+{#                                timeline: {#}
+{#                                    orient: 'vertical',#}
+{#                                    inverse: true,#}
+{#                                    right: 10,#}
+{#                                    top: 150,#}
+{#                                    bottom: 10,#}
+{#                                    width: 55#}
+{#                                },#}
+{#                                series: [#}
+{#                                    {name: 'GDP占比', center: ['45%', '20%'], radius: '28%'}#}
+{#                                ]#}
+{#                            }#}
+{#                        }#}
+{#                    ],#}
+{#                    options: [#}
+{#                        {#}
+{#                            title: {text: '2002全国宏观经济指标'},#}
+{#                            series: [#}
+{#                                {data: dataMap.dataGDP['2002']},#}
+{#                                {data: dataMap.dataFinancial['2002']},#}
+{#                                {data: dataMap.dataEstate['2002']},#}
+{#                                {data: dataMap.dataPI['2002']},#}
+{#                                {data: dataMap.dataSI['2002']},#}
+{#                                {data: dataMap.dataTI['2002']},#}
+{#                                {data: [#}
+{#                                    {name: '第一产业', value: dataMap.dataPI['2002sum']},#}
+{#                                    {name: '第二产业', value: dataMap.dataSI['2002sum']},#}
+{#                                    {name: '第三产业', value: dataMap.dataTI['2002sum']}#}
+{#                                ]}#}
+{#                            ]#}
+{#                        },#}
+{#                        {#}
+{#                            title : {text: '2003全国宏观经济指标'},#}
+{#                            series : [#}
+{#                                {data: dataMap.dataGDP['2003']},#}
+{#                                {data: dataMap.dataFinancial['2003']},#}
+{#                                {data: dataMap.dataEstate['2003']},#}
+{#                                {data: dataMap.dataPI['2003']},#}
+{#                                {data: dataMap.dataSI['2003']},#}
+{#                                {data: dataMap.dataTI['2003']},#}
+{#                                {data: [#}
+{#                                    {name: '第一产业', value: dataMap.dataPI['2003sum']},#}
+{#                                    {name: '第二产业', value: dataMap.dataSI['2003sum']},#}
+{#                                    {name: '第三产业', value: dataMap.dataTI['2003sum']}#}
+{#                                ]}#}
+{#                            ]#}
+{#                        },#}
+{#                        {#}
+{#                            title : {text: '2004全国宏观经济指标'},#}
+{#                            series : [#}
+{#                                {data: dataMap.dataGDP['2004']},#}
+{#                                {data: dataMap.dataFinancial['2004']},#}
+{#                                {data: dataMap.dataEstate['2004']},#}
+{#                                {data: dataMap.dataPI['2004']},#}
+{#                                {data: dataMap.dataSI['2004']},#}
+{#                                {data: dataMap.dataTI['2004']},#}
+{#                                {data: [#}
+{#                                    {name: '第一产业', value: dataMap.dataPI['2004sum']},#}
+{#                                    {name: '第二产业', value: dataMap.dataSI['2004sum']},#}
+{#                                    {name: '第三产业', value: dataMap.dataTI['2004sum']}#}
+{#                                ]}#}
+{#                            ]#}
+{#                        },#}
+{#                        {#}
+{#                            title : {text: '2005全国宏观经济指标'},#}
+{#                            series : [#}
+{#                                {data: dataMap.dataGDP['2005']},#}
+{#                                {data: dataMap.dataFinancial['2005']},#}
+{#                                {data: dataMap.dataEstate['2005']},#}
+{#                                {data: dataMap.dataPI['2005']},#}
+{#                                {data: dataMap.dataSI['2005']},#}
+{#                                {data: dataMap.dataTI['2005']},#}
+{#                                {data: [#}
+{#                                    {name: '第一产业', value: dataMap.dataPI['2005sum']},#}
+{#                                    {name: '第二产业', value: dataMap.dataSI['2005sum']},#}
+{#                                    {name: '第三产业', value: dataMap.dataTI['2005sum']}#}
+{#                                ]}#}
+{#                            ]#}
+{#                        },#}
+{#                        {#}
+{#                            title : {text: '2006全国宏观经济指标'},#}
+{#                            series : [#}
+{#                                {data: dataMap.dataGDP['2006']},#}
+{#                                {data: dataMap.dataFinancial['2006']},#}
+{#                                {data: dataMap.dataEstate['2006']},#}
+{#                                {data: dataMap.dataPI['2006']},#}
+{#                                {data: dataMap.dataSI['2006']},#}
+{#                                {data: dataMap.dataTI['2006']},#}
+{#                                {data: [#}
+{#                                    {name: '第一产业', value: dataMap.dataPI['2006sum']},#}
+{#                                    {name: '第二产业', value: dataMap.dataSI['2006sum']},#}
+{#                                    {name: '第三产业', value: dataMap.dataTI['2006sum']}#}
+{#                                ]}#}
+{#                            ]#}
+{#                        },#}
+{#                        {#}
+{#                            title : {text: '2007全国宏观经济指标'},#}
+{#                            series : [#}
+{#                                {data: dataMap.dataGDP['2007']},#}
+{#                                {data: dataMap.dataFinancial['2007']},#}
+{#                                {data: dataMap.dataEstate['2007']},#}
+{#                                {data: dataMap.dataPI['2007']},#}
+{#                                {data: dataMap.dataSI['2007']},#}
+{#                                {data: dataMap.dataTI['2007']},#}
+{#                                {data: [#}
+{#                                    {name: '第一产业', value: dataMap.dataPI['2007sum']},#}
+{#                                    {name: '第二产业', value: dataMap.dataSI['2007sum']},#}
+{#                                    {name: '第三产业', value: dataMap.dataTI['2007sum']}#}
+{#                                ]}#}
+{#                            ]#}
+{#                        },#}
+{#                        {#}
+{#                            title : {text: '2008全国宏观经济指标'},#}
+{#                            series : [#}
+{#                                {data: dataMap.dataGDP['2008']},#}
+{#                                {data: dataMap.dataFinancial['2008']},#}
+{#                                {data: dataMap.dataEstate['2008']},#}
+{#                                {data: dataMap.dataPI['2008']},#}
+{#                                {data: dataMap.dataSI['2008']},#}
+{#                                {data: dataMap.dataTI['2008']},#}
+{#                                {data: [#}
+{#                                    {name: '第一产业', value: dataMap.dataPI['2008sum']},#}
+{#                                    {name: '第二产业', value: dataMap.dataSI['2008sum']},#}
+{#                                    {name: '第三产业', value: dataMap.dataTI['2008sum']}#}
+{#                                ]}#}
+{#                            ]#}
+{#                        },#}
+{#                        {#}
+{#                            title : {text: '2009全国宏观经济指标'},#}
+{#                            series : [#}
+{#                                {data: dataMap.dataGDP['2009']},#}
+{#                                {data: dataMap.dataFinancial['2009']},#}
+{#                                {data: dataMap.dataEstate['2009']},#}
+{#                                {data: dataMap.dataPI['2009']},#}
+{#                                {data: dataMap.dataSI['2009']},#}
+{#                                {data: dataMap.dataTI['2009']},#}
+{#                                {data: [#}
+{#                                    {name: '第一产业', value: dataMap.dataPI['2009sum']},#}
+{#                                    {name: '第二产业', value: dataMap.dataSI['2009sum']},#}
+{#                                    {name: '第三产业', value: dataMap.dataTI['2009sum']}#}
+{#                                ]}#}
+{#                            ]#}
+{#                        },#}
+{#                        {#}
+{#                            title : {text: '2010全国宏观经济指标'},#}
+{#                            series : [#}
+{#                                {data: dataMap.dataGDP['2010']},#}
+{#                                {data: dataMap.dataFinancial['2010']},#}
+{#                                {data: dataMap.dataEstate['2010']},#}
+{#                                {data: dataMap.dataPI['2010']},#}
+{#                                {data: dataMap.dataSI['2010']},#}
+{#                                {data: dataMap.dataTI['2010']},#}
+{#                                {data: [#}
+{#                                    {name: '第一产业', value: dataMap.dataPI['2010sum']},#}
+{#                                    {name: '第二产业', value: dataMap.dataSI['2010sum']},#}
+{#                                    {name: '第三产业', value: dataMap.dataTI['2010sum']}#}
+{#                                ]}#}
+{#                            ]#}
+{#                        },#}
+{#                        {#}
+{#                            title : {text: '2011全国宏观经济指标'},#}
+{#                            series : [#}
+{#                                {data: dataMap.dataGDP['2011']},#}
+{#                                {data: dataMap.dataFinancial['2011']},#}
+{#                                {data: dataMap.dataEstate['2011']},#}
+{#                                {data: dataMap.dataPI['2011']},#}
+{#                                {data: dataMap.dataSI['2011']},#}
+{#                                {data: dataMap.dataTI['2011']},#}
+{#                                {data: [#}
+{#                                    {name: '第一产业', value: dataMap.dataPI['2011sum']},#}
+{#                                    {name: '第二产业', value: dataMap.dataSI['2011sum']},#}
+{#                                    {name: '第三产业', value: dataMap.dataTI['2011sum']}#}
+{#                                ]}#}
+{#                            ]#}
+{#                        }#}
+{#                    ]#}
+{#                };#}
+{##}
+{#                myChart.setOption(option);#}
+{##}
+{#            });#}
+{#            if (option && typeof option === "object") {#}
+{#                myChart.setOption(option, true);#}
+{#            }#}
+{#       </script>#}
 
         {% endblock %}
