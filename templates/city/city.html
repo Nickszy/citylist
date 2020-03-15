@@ -1,0 +1,252 @@
+{% extends 'base.html' %}
+{% block title %} {{city.name}}{% endblock %}
+{% block content %}
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-sm-6" >
+                <h1 align="center"> {{city.name}}</h1>
+                <p>人口 ： {{ city.people }}</p>
+                <p> {{ lasttime }}</p>
+
+            </div>
+            <div class="col-sm-6">
+                <img style="width: 460px;height: 300px;" src="../static/img/cityphoto/Shanghai.jpeg" alt="{{city.name}}">
+            </div>
+        </div>
+    </div>
+
+{{ city }}
+    <div class="row">
+        <div class="col-sm-6">
+            <div id="youhao" style="width: 480px; height: 300px;" align="center"></div>
+            <script type="text/javascript">
+                var chart = echarts.init(document.getElementById("youhao"));
+                options={
+                    title:{
+                        text: '友好程度'
+                    }
+                };
+                chart.setOption(options);
+
+            </script>
+        </div>
+        <div class="col-sm-6">
+            <div id="leida" style="width: 600px; height: 400px" align="center"></div>
+                <script type="text/javascript">
+                    var leida = echarts.init(document.getElementById("leida"));
+                    options = {
+                        {#backgroundColor: 'white',#}
+                        title:{
+                          text: "城市评分雷达图",
+                            textStyle:{
+                              width: '100%',
+                                height: '30px'
+                            }
+                        },
+                        color: ['#3D91F7', '#61BE67'],
+                        tooltip: {},
+                        legend: {
+                            show: true,
+                            icon: "circle",
+                            bottom: 30,
+                            center: 0,
+                            itemWidth: 14,
+                            itemHeight: 14,
+                            itemGap: 21,
+                            orient: "horizontal",
+                            data: ['a', 'b'],
+                            textStyle: {
+                                fontSize: '70%',
+                                color: '#8C8C8C'
+                            },
+                        },
+
+                        radar: {
+                            {#shape: 'circle',#}
+                            radius:'80%',
+                            triggerEvent: true,
+                            name: {
+                                textStyle: {
+                                    color: '#000000',
+                                    fontSize:'20',
+                                    borderRadius: 3,
+                                    padding: [3, 5]
+                                }
+                            },
+                            nameGap:'2',
+                            indicator: [{//[4300, 10000, 28000, 35000, 50000, 19000, 21000]
+                                    name: '医疗', max: 6500},
+                                {name: '交通', max: 16000},
+                                {name: '教育', max: 30000 },
+                                {name: '环境', max: 38000},
+                                {name: '工作机会',max: 52000},
+                                {name: '生活成本', max: 25000},
+                            ],
+                            splitArea: {
+                                areaStyle: {
+                                     color: [
+                                             'rgba(222,134,85, 0.1)', 'rgba(222,134,85, 0.2)',
+                                             'rgba(222,134,85, 0.4)', 'rgba(222,134,85, 0.6)',
+                                             'rgba(222,134,85, 0.8)', 'rgba(222,134,85, 1)'
+                                         ].reverse()
+                                }
+                            },
+                            axisLabel:{//展示刻度
+                                show: true
+                            },
+                            axisLine: { //指向外圈文本的分隔线样式
+                                lineStyle: {
+                                    color: 'rgba(0,0,0,0)'
+                                }
+                            },
+                            splitLine: {
+                                lineStyle: {
+                                    width:2,
+                                    color: [
+                                        'rgba(224,134,82, 0.1)', 'rgba(224,134,82, 0.2)',
+                                        'rgba(224,134,82, 0.4)', 'rgba(224,134,82, 0.6)',
+                                        'rgba(224,134,82, 0.8)', 'rgba(224,134,82, 1)'
+                                    ].reverse()
+                                }
+                            },
+
+                        },
+
+                        series: [{
+                            name: '一级权重分析',
+                            type: 'radar',
+                            //areaStyle: {normal: {}},
+                            areaStyle: {
+                                normal: {
+                                    color: 'rgba(252,211,3, 0.3)'
+                                }
+                            },
+                            symbolSize: 0,
+                            lineStyle: {
+                                normal: {
+                                    color: 'rgba(252,211,3, 1)',
+                                    width: 1
+                                }
+                            },
+                            data: [{
+                                    value: [4300, 10000, 28000, 35000, 50000, 19000],
+                                    name: '因素',
+
+
+
+                                }
+                            ]
+                        }]
+                    };
+                    leida.setOption(options);
+                </script>
+        </div>
+    </div>
+
+    <div class="container" align="center">
+        <br>
+        <div id="bar" style="width:1000px; height:600px;"></div>
+        <script>
+        $(
+                function () {
+                    var chart = echarts.init(document.getElementById('bar'), 'white', {renderer: 'canvas'});
+                    $.ajax({
+                        type: "GET",
+                        url: "../city/bar",
+                        dataType: 'json',
+                        success: function (result) {
+                            chart.setOption(result.data);
+                        }
+                    });
+                }
+            )
+        </script>
+    </div>
+    <br>
+    <div class="container-fluid">
+        <div id="map" style="width: 600px; height: 400px;"></div>
+        <script type="text/javascript">
+            var map = echarts.init(document.getElementById('map'),{renderer:'svg'});
+            options = {
+                geo: {
+                            map: 'china',
+                            roam: true,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    textStyle: {
+                                        color: 'rgba(0,0,0,0.4)'
+                                    }
+                                }
+                            },
+                            itemStyle: {
+                                normal:{
+                                    borderColor: 'rgba(10, 21, 21, 8)'
+                                },
+                                emphasis:{
+                                    color: '#fff' ,
+                                    areaColor: '#fff',
+                                    shadowOffsetX: 0,
+                                    shadowOffsetY: 0,
+                                    shadowBlur: 20,
+                                    borderWidth: 0,
+                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                }
+                            }
+                        }
+            };
+            map.setOption(options);
+        </script>
+    </div>
+<div class="container-fluid">
+    <div id="bmap" style="width: 600px; height: 400px;"></div>
+</div>
+        <script type="text/javascript">
+            var bmap = echarts.init(document.getElementById("bmap"));
+            options = {
+                title:{
+                    text: "上海"
+                },
+                bmap: {
+                    // 百度地图中心经纬度
+                    center: [121.44518, 31.23916],
+                    // 百度地图缩放
+                    zoom: 10,
+                    // 是否开启拖拽缩放，可以只设置 'scale' 或者 'move'
+                    roam: true,
+                    // 百度地图的自定义样式，见 http://developer.baidu.com/map/jsdevelop-11.htm
+                    mapStyle: {}
+                },
+                series: [{
+                    type: 'scatter',
+                    // 使用百度地图坐标系
+                    coordinateSystem: 'bmap',
+                    // 数据格式跟在 geo 坐标系上一样，每一项都是 [经度，纬度，数值大小，其它维度...]
+                    data: [ [120, 30, 1] ]
+                }]
+            };
+            {#var bmap = chart.getModel().getComponent('bmap').getBMap();#}
+            {#bmap.addControl(new BMap.MapTypeControl());#}
+
+            bmap.setOption(options);
+
+        </script>
+<div id="geo" class="container-fluid" style="width: 600px;height: 400px;"></div>
+    <script type="text/javascript">
+        $.get('/static/chinaMapJsonData/csj.json',function (geojson) {
+            echarts.registerMap('zj',geojson);
+            var chart = echarts.init(document.getElementById('geo'));
+            chart.setOption({
+                series: [{
+                    type: 'map',
+                    mapType: 'zj',
+                    label:{
+                        show: true
+                    }
+                }]
+            });
+        });
+    </script>
+
+
+{% endblock %}

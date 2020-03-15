@@ -14,9 +14,33 @@ def index(request):
 
 
 def city(request):
-    return render(request,'./city/citylist.html')
+    city = request.GET.get('city','')
+    list = ['上海','湖州']
+    if city in list:
+        content={
+            'city':{
+            'name': city,
+            'people': 213123,
+            }}
+        content['lasttime'] = '2020-03-01'
+        return render(request, './city/city.html',content)
+    return render(request,'./404.html')
 
+def env(request):
+    return render(request,'./city/chart.html')
 
+def citylist(request):
+    content = {
+        'citylist':{
+            'dadas':{'name':'上海','place':'🌲🌊🌊','address':'上海市','tags':'国际化 魔都'},
+            'dadd':{'name':'上海','place':'🌲🌊🌊','address':'上海市','tags':'国际化 魔都'},
+            's':{'name':'上海','place':'🌲🌊🌊','address':'上海市','tags':'国际化 魔都'},
+            'dasd':{'name':'上海','place':'🌲🌊🌊','address':'上海市','tags':'国际化 魔都'},
+            'dsad':{'name':'上海','place':'🌲🌊🌊','address':'上海市','tags':'国际化 魔都'},
+            'huzhou': {'name':'湖州','place':"🏔🌲🌊",'address':'浙江省/湖州市','tags':'长三角 南太湖'}
+        }
+    }
+    return render(request, './city/citylist.html',content)
 
 
 def response_as_json(data):
@@ -68,5 +92,3 @@ class ChartView(APIView):
         return JsonResponse(json.loads(bar_base()))
 
 
-def env(request):
-    return render(request,'./city/chart.html')

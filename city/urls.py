@@ -20,6 +20,7 @@ from city import views
 urlpatterns = [
     path('',views.index),
     path('city/',views.city),
+    path('citylist/', views.citylist),
     path('env/',views.env),
     path('bar/',views.ChartView.as_view())
 ]
