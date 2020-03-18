@@ -3,7 +3,7 @@
 {% block content %}
 
     <div  class="jumbotron">
-            <div id="china" class="container-fluid" style="width: 800px;height: 600px;" align="center">
+            <div id="china" class="container-fluid" style="width:100%;height: 400px;" align="center">
                 <script>
                     $.get('/static/map/json/china.json',function (geojson) {
                           echarts.registerMap('china',geojson);
@@ -24,18 +24,17 @@
     </div>
     <p>{{ ciytylist }}</p>
 
-
-    <ul class="row">
+    <div class="container">
+    <div class="row">
         {% for city,more in citylist.items %}
-            <li class="col-6" style="list-style: none;margin-bottom: 10px">
-    <div class="theme-cards-holder" style="height: 300px;">
+            <div style="list-style: none;margin-bottom: 20px;width:100%;">
+    <div class="theme-cards-holder" style="width:100%;height: 300px;">
       <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <div class="col p-4 d-flex flex-column">
           <strong class="d-inline-block mb-2 text-primary">{{more.tags}}</strong>
           <h3 class="mb-0">{{more.name}}</h3>
           <div class="mb-1 text-muted">{{more.place}}</div>
-            <p>一段话介绍</p>
-          <p class="card-text mb-auto">city的全部字段：{{more}}</p>
+          <p class="card-text mb-auto">{{more.one_des}}</p>
           <a href="../city/?city={{ more.name }}">详情</a>
         </div>
         <div class="col-auto d-none d-lg-block">
@@ -47,6 +46,7 @@
                     $.get(url,function (geojson) {
                         echarts.registerMap(id,geojson);
                         var chart = echarts.init(document.getElementById('{{ city }}'),{renderer:'svg'});
+                        window.onresize = chart.resize;
                         chart.setOption({
                             series: [{
                                 type: 'map',
@@ -57,13 +57,15 @@
                             }]
                         });
                           });
+
                 </script>
         </div>
       </div>
     </div>
-    </li>
+    </div>
         {% endfor %}
-    </ul>
+    </div>
+    </div>
 {##}
 {#    <div class="container">#}
 {#        <div class="row">#}
