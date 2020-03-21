@@ -20,9 +20,10 @@ def city(request):
         print(city)
         content={
             'city':{
-            'name': city_name,
-            'people': 213123,
-            }}
+                'name': city_name,
+                'people': 213123,
+            }
+        }
         content['lasttime'] = '2020-03-01'
         return render(request, './city/city.html', content)
     return render(request,'./404.html')
@@ -43,9 +44,9 @@ def citylist(request):
     # }
     content={'citylist':{}}
     city_des = City.objects.all()
-    for city in city_des:
+    for city in city_des[0:20]:
         content['citylist'][f'{city.city}'] = {
-            'name': city.city, 'tags': city.tags, 'des': city.des}
+            'name': city.city, 'tags': city.tags, 'des': city.des,'address':city.address}
     return render(request, './city/citylist.html',content)
 
 
@@ -96,5 +97,4 @@ def bar_base() -> Bar:
 class ChartView(APIView):
     def get(self, request, *args, **kwargs):
         return JsonResponse(json.loads(bar_base()))
-
 

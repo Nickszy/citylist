@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title %}
+投资
+{% endblock %}
+
+{% block content %}
+    <div>
+    <p style="width: 100%;height: 100px;display: block;line-height: 100px;text-align: center;"> 城市投资</p>
+    </div>
+
+    <div class="container">
+    <div class="row">
+            <div style="list-style: none;margin-bottom: 20px;width:100%;">
+    <div class="theme-cards-holder" style="width:100%;height: 300px;">
+      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column">
+          <strong class="d-inline-block mb-2 text-primary">{{more.tags}}</strong>
+          <h3 class="mb-0">{{more.name}}</h3>
+          <div class="mb-1 text-muted">{{more.place}}</div>
+          <p class="card-text mb-auto">{{more.des}}</p>
+          <a href="../city/?city={{ more.name }}">详情</a>
+        </div>
+        <div class="col-auto d-none d-lg-block">
+                <div id="{{city}}" style="width: 250px;height:300px;"></div>
+                <script>
+                    place = '{{more.address}}'
+                    id = '{{ city }}'
+                    url = "../static/chinaMapJsonData/"+place+"/datas.json"
+                    $.get(url,function (geojson) {
+                        echarts.registerMap(id,geojson);
+                        var chart = echarts.init(document.getElementById('{{ city }}'),{renderer:'svg'});
+                        window.onresize = chart.resize;
+                        chart.setOption({
+                            series: [{
+                                type: 'map',
+                                mapType: id,
+                                label:{
+                                    show: true
+                                }
+                            }]
+                        });
+                          });
+
+                </script>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+    </div>
+{% endblock %}

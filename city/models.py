@@ -6,6 +6,7 @@ class City(models.Model):
     # ename = models.CharField()
     des = models.TextField()
     tags = models.TextField()
+    address = models.CharField(max_length=20)
 
     class Meta:
         db_table = 'city_des'
