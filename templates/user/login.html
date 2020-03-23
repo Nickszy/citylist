@@ -3,22 +3,22 @@
 {% block title %} login{% endblock %}
 
 {% block content %}
-    <div class="text-center" style="padding-top: 40px;padding-bottom: 40px;" align="center">
-        <p>{{ status }}</p>
 
+    <div class="text-center" style="padding-top: 40px;padding-bottom: 40px;" align="center">
         <form class="form-signin" style="width: 100%; max-width:330px;margin:auto;padding: 15px;" action="./login" method="post">
         {% csrf_token %}
               <img class="mb-4" src="" alt="logo" width="72" height="72">
               <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-              <label for="inputEmail" class="sr-only">Email address</label>
-              <input type="email" name="uname" class="form-control" placeholder="Email address" required="" autofocus="">
+              <label class="sr-only">username</label>
+              <input type="test" name="uname" class="form-control" placeholder="username" required="" autofocus="">
               <label for="inputPassword" class="sr-only" >Password</label>
               <input type="password" name="upass" class="form-control" placeholder="Password" required="">
-              <div class="checkbox mb-3">
+                                <p style="color:red;">{{ message }}</p>
+              <span class="checkbox mb-3">
                 <label>
                   <input type="checkbox" value="remember-me"> Remember me
                 </label>
-              </div>
+              </span>
               <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
         </form>
     </div>
