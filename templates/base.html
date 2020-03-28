@@ -47,7 +47,7 @@
                     <a class="nav-link" href="../job">工作</a>
                   </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../topic">专题</a>
+                    <a class="nav-link" href="../invest">城市投资</a>
                   </li>
                     <li class="nav-item">
                     <a class="nav-link" href="http://nickszy.coldpoker.xyz">author</a>
@@ -57,6 +57,17 @@
               <input class="form-control mr-sm-2" type="search" placeholder="Search" name="city" aria-label="Search">
               <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
+                <ul class="navbar-nav navbar-right pull-right" >
+                    {% if request.session.user_name %}
+                        <a class="nav-link" href="">{{ request.session.user_name }}</a>
+                        <a class="nav-link" href="/user/logout">退出</a>
+                    {% else %}
+                    <a class="nav-link" href="/user/sign_up">注册</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="nav-link" href="/user">用户登录</a>
+                    {% endif %}
+
+                </ul>
             </div>
                 </div>
         </nav>
