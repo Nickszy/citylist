@@ -29,6 +29,7 @@ ALLOWED_HOSTS = ['citylist.coldpoker.xyz', 'localhost', '127.0.0.1', 'citylist.c
 # Application definition
 
 INSTALLED_APPS = [
+    'simpleui',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

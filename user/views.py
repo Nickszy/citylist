@@ -16,10 +16,8 @@ def register(request):
             new_user.upass = request.POST.get('upass',)
             new_user.uemail = request.POST.get('uemail',)
             new_user.save()
-            print('chenggong')
         except:
-            print('dom')
-            return redirect('')
+            return render(request,'/user/login.html',{'message':'请重新输入'})
     return redirect('/user/')
 
 def login(request):

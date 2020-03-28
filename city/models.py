@@ -4,10 +4,11 @@ from django.db import models
 class City(models.Model):
     city = models.CharField(max_length=100, primary_key=True)
     # ename = models.CharField()
-    des = models.TextField()
+    # uprovince = ('安徽省','浙江省','江苏省','')
+    province = models.CharField(max_length=20)
     tags = models.TextField()
+    des = models.TextField()
     address = models.CharField(max_length=20)
-
     class Meta:
         db_table = 'city_des'
 

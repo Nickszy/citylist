@@ -9,6 +9,6 @@ class User(models.Model):
     uname = models.CharField(max_length=128)
     upass = models.CharField(max_length=256)
     uemail = models.EmailField()
-    # usex = models.CharField(max_length=6,choices=ugender)
+    usex = models.CharField(max_length=6,choices=ugender)
     class Meta():
         db_table='user_login'
