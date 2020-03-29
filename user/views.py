@@ -16,9 +16,10 @@ def register(request):
             new_user.upass = request.POST.get('upass',)
             new_user.uemail = request.POST.get('uemail',)
             new_user.save()
+            message = '注册成功，请登录'
         except:
             return render(request,'/user/login.html',{'message':'请重新输入'})
-    return redirect('/user/')
+    return render(request,'user/login.html',{'message':message})
 
 def login(request):
     if request.session.get('is_login', None):  # 不允许重复登录
@@ -37,7 +38,7 @@ def login(request):
             request.session['is_login'] = True
             request.session['user_id'] = user.id
             request.session['user_name'] = user.uname
-            return render(request,'index.html')
+            return HttpResponseRedirect('../')
         else:
             message = '密码不正确！'
             print(message)

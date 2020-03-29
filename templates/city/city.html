@@ -1,21 +1,24 @@
 {% extends 'base.html' %}
 {% block title %} {{city.name}}{% endblock %}
 {% block content %}
-    <div class="jumbotron">
-        <div class="row">
-            <div class="col-sm-6" >
-                <h1 align="center"> {{city.name}}</h1>
-                <p>人口 ： {{ city.people }}</p>
-                <p> {{ lasttime }}</p>
+    <div class="container">
+        <div class="jumbotron">
+            <div class="row">
+                <div class="col-sm-6" >
+                    <h1 align="center"> {{city.name}}</h1>
+                    <p>人口 ： {{ city.people }}</p>
+                    <p> {{ lasttime }}</p>
 
-            </div>
-            <div class="col-sm-6">
-                <img style="width: 460px;height: 300px;" src="../static/img/cityphoto/Shanghai.jpeg" alt="{{city.name}}">
+                </div>
+                <div class="col-sm-6">
+                    <img  class="rounded" style="max-width:100%;max-height:auto;" src="../static/img/cityphoto/Shanghai.jpeg" alt="{{city.name}}">
+                </div>
             </div>
         </div>
     </div>
 
-{{ city }}
+    <div class="container">
+
     <div class="row">
         <div class="col-sm-6">
             <div id="youhao" style="width: 480px; height: 300px;" align="center"></div>
@@ -142,7 +145,7 @@
                 </script>
         </div>
     </div>
-
+    </div>
     <div class="container" align="center">
         <br>
         <div id="bar" style="width:1000px; height:600px;"></div>
