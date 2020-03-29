@@ -75,10 +75,10 @@ JsonError = json_error
 def bar_base() -> Bar:
     c = (
         Bar()
-        .add_xaxis(["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"])
-        .add_yaxis("商家A", [randrange(0, 100) for _ in range(6)])
-        .add_yaxis("商家B", [randrange(0, 100) for _ in range(6)])
-        .set_global_opts(title_opts=opts.TitleOpts(title="对比", subtitle="杭州vs湖州"))
+        .add_xaxis(["郊游", "自行车","宠物", "老年人"])
+        .add_yaxis("湖州", [randrange(0, 10) for _ in range(4)])
+        .add_yaxis("杭州", [randrange(0, 10) for _ in range(4)])
+        .set_global_opts(title_opts=opts.TitleOpts(title="友好度", subtitle="杭州vs湖州"))
         .dump_options_with_quotes()
     )
     return c
