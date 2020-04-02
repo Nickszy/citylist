@@ -27,9 +27,8 @@
     <div class="container">
     <div class="row">
         {% for city,more in citylist.items %}
-            <div style="list-style: none;margin-bottom: 20px;width:100%;">
-    <div class="theme-cards-holder" style="width:100%;height: auto;padding-left: 5%;padding-right: 5%">
-      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+    <div class="col-xs-12 col-sm-6 col-md-4 theme-row" style="height: auto;">
+      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm position-relative">
         <div class="col p-4 d-flex flex-column">
           <strong class="d-inline-block mb-2 text-primary">{{more.tags}}</strong>
           <h3 class="mb-0">{{more.name}}</h3>
@@ -37,8 +36,7 @@
           <p class="card-text mb-auto">{{more.des}}</p>
           <a href="../city/?city={{ more.name }}">详情</a>
         </div>
-        <div class="col-auto d-none d-lg-block">
-                <div id="{{city}}" style="width: 250px;height:300px;"></div>
+                <div id="{{city}}" style="width: 120px;height:6.5rem;position: absolute;right: 0px;"></div>
                 <script>
                     place = '{{more.address}}'
                     id = '{{ city }}'
@@ -52,172 +50,16 @@
                                 type: 'map',
                                 mapType: id,
                                 label:{
-                                    show: true
+                                    {#show: true#}
                                 }
                             }]
                         });
                           });
 
                 </script>
-        </div>
-      </div>
     </div>
     </div>
         {% endfor %}
     </div>
     </div>
-{##}
-{#    <div class="container">#}
-{#        <div class="row">#}
-{#        <div class="col-md-6" style="height: 300px;" align="center">#}
-{#          <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">#}
-{#            <div class="col p-4 d-flex flex-column">#}
-{#              <strong class="d-inline-block mb-2 text-primary">🎉🎉🎉</strong>#}
-{#              <h3 class="mb-0">杭州</h3>#}
-{#              <div class="mb-1 text-muted">长三角</div>#}
-{#              <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>#}
-{#              <a href="#">Continue reading</a>#}
-{#            </div>#}
-{#            <div class="col-auto d-none d-lg-block">#}
-{#                    <div id="hz" style="width: 250px;height:300px;"></div>#}
-{#                    <script>#}
-{#                        place = '浙江省/杭州市'#}
-{#                        url = "../static/chinaMapJsonData/"+place+"/datas.json"#}
-{#                        $.get(url,function (geojson) {#}
-{#                            echarts.registerMap(place,geojson);#}
-{#                            var chart = echarts.init(document.getElementById('hz'),{renderer:'svg'});#}
-{#                            chart.setOption({#}
-{#                                series: [{#}
-{#                                    type: 'map',#}
-{#                                    mapType: place,#}
-{#                                    label:{#}
-{#                                        show: true#}
-{#                                    }#}
-{#                                }]#}
-{#                            });#}
-{#                              });#}
-{#                    </script>#}
-{#            </div>#}
-{#          </div>#}
-{#        </div>#}
-{#        <div class="col-md-6" style="height: 300px;">#}
-{#          <div class="row border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250">#}
-{#            <div class="col p-4 d-flex flex-column position-relative">#}
-{#              <strong class="d-inline-block mb-2 text-success">长三角 南太湖</strong>#}
-{#              <h3 class="mb-0">湖州</h3>#}
-{#              <div class="mb-1 text-muted">🏔🌲🌊</div>#}
-{#              <p class="mb-auto">这是我家世界独复活的时候怕发生的股票啊师傅还是到付好屌丝U回复数的方法</p>#}
-{#              <a href="#" class="">Continue reading</a>#}
-{#            </div>#}
-{#                  <div id="zj" class="col-auto d-none d-lg-block" style="width: 250px;height: 300px;"></div>#}
-{#                    <script>#}
-{#                        place = '浙江省/湖州市'#}
-{#                        url = "../static/chinaMapJsonData/"+place+"/datas.json"#}
-{#                        $.get(url,function (geojson) {#}
-{#                            echarts.registerMap(place,geojson);#}
-{#                            var chart = echarts.init(document.getElementById('zj'));#}
-{#                            chart.setOption({#}
-{#                                series: [{#}
-{#                                    type: 'map',#}
-{#                                    mapType: place,#}
-{#                                    label:{#}
-{#                                        show: true#}
-{#                                    }#}
-{#                                }]#}
-{#                            });#}
-{#                              });#}
-{#                    </script>#}
-{#          </div>#}
-{#          </div>#}
-{#        </div>#}
-{#        </div>#}
-{#    </div>#}
-{##}
-{#    <hr style="featurette-divider">#}
-{#    <div class="container-fluid">#}
-{#        <div id="map" style="width: 600px; height: 400px;"></div>#}
-{#        <script type="text/javascript">#}
-{#            var map = echarts.init(document.getElementById('map'),{renderer:'svg'});#}
-{#            options = {#}
-{#                geo: {#}
-{#                            map: 'china',#}
-{#                            roam: true,#}
-{#                            label: {#}
-{#                                normal: {#}
-{#                                    show: true,#}
-{#                                    textStyle: {#}
-{#                                        color: 'rgba(0,0,0,0.4)'#}
-{#                                    }#}
-{#                                }#}
-{#                            },#}
-{#                            itemStyle: {#}
-{#                                normal:{#}
-{#                                    borderColor: 'rgba(10, 21, 21, 8)'#}
-{#                                },#}
-{#                                emphasis:{#}
-{#                                    color: '#fff' ,#}
-{#                                    areaColor: '#fff',#}
-{#                                    shadowOffsetX: 0,#}
-{#                                    shadowOffsetY: 0,#}
-{#                                    shadowBlur: 20,#}
-{#                                    borderWidth: 0,#}
-{#                                    shadowColor: 'rgba(0, 0, 0, 0.5)'#}
-{#                                }#}
-{#                            }#}
-{#                        }#}
-{#            };#}
-{#            map.setOption(options);#}
-{#        </script>#}
-{#    </div>#}
-{#<div class="container-fluid">#}
-{#    <div id="bmap" style="width: 600px; height: 400px;"></div>#}
-{#</div>#}
-{#        <script type="text/javascript">#}
-{#            var bmap = echarts.init(document.getElementById("bmap"));#}
-{#            options = {#}
-{#                title:{#}
-{#                    text: "上海"#}
-{#                },#}
-{#                bmap: {#}
-{#                    // 百度地图中心经纬度#}
-{#                    center: [121.44518, 31.23916],#}
-{#                    // 百度地图缩放#}
-{#                    zoom: 10,#}
-{#                    // 是否开启拖拽缩放，可以只设置 'scale' 或者 'move'#}
-{#                    roam: true,#}
-{#                    // 百度地图的自定义样式，见 http://developer.baidu.com/map/jsdevelop-11.htm#}
-{#                    mapStyle: {}#}
-{#                },#}
-{#                series: [{#}
-{#                    type: 'scatter',#}
-{#                    // 使用百度地图坐标系#}
-{#                    coordinateSystem: 'bmap',#}
-{#                    // 数据格式跟在 geo 坐标系上一样，每一项都是 [经度，纬度，数值大小，其它维度...]#}
-{#                    data: [ [120, 30, 1] ]#}
-{#                }]#}
-{#            };#}
-            {#var bmap = chart.getModel().getComponent('bmap').getBMap();#}
-            {#bmap.addControl(new BMap.MapTypeControl());#}
-{##}
-{#            bmap.setOption(options);#}
-{##}
-{#        </script>#}
-{#<div id="geo" class="container-fluid" style="width: 600px;height: 400px;"></div>#}
-{#    <script type="text/javascript">#}
-{#        $.get('/static/chinaMapJsonData/csj.json',function (geojson) {#}
-{#            echarts.registerMap('zj',geojson);#}
-{#            var chart = echarts.init(document.getElementById('geo'));#}
-{#            chart.setOption({#}
-{#                series: [{#}
-{#                    type: 'map',#}
-{#                    mapType: 'zj',#}
-{#                    label:{#}
-{#                        show: true#}
-{#                    }#}
-{#                }]#}
-{#            });#}
-{#        });#}
-{#    </script>#}
-
-
 {% endblock %}
