@@ -1,5 +1,6 @@
 import datetime
 
+import emoji
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from user.models import *
@@ -17,20 +18,20 @@ def get_ip(request):
 
 def register(request):
     uname = request.POST.get('uname','')
-    if User.objects.filter(uname=uname):
+    if User.objects.filter(uname=emoji.demojize(uname)):
         return redirect('/user/')
     else:
         new_user = User()
         try:
-            new_user.uname = uname
+            new_user.uname = emoji.demojize(uname)
             new_user.upass = request.POST.get('upass',)
             new_user.uemail = request.POST.get('uemail',)
             new_user.save()
             # 将用户信息存在session中
-            user = User.objects.get(uname=uname)
+            user = User.objects.get(uname=emoji.demojize(uname))
             request.session['is_login'] = True
             request.session['user_id'] = user.id
-            request.session['user_name'] = user.uname
+            request.session['user_name'] = uname
             # 记录用户注册时间
             ureg = User_login(ip=get_ip(request), user_id=user.id, time=datetime.datetime.now(),
                                  status='register')
@@ -49,14 +50,14 @@ def login(request):
         uname = request.POST.get('uname','')
         password = request.POST.get('upass','')
         try:
-            user = User.objects.get(uname=uname)
+            user = User.objects.get(uname=emoji.demojize(uname))
         except :
             message = '用户不存在！'
             return render(request,'user/login.html',{'message':message})
         if user.upass == password:
             request.session['is_login'] = True
             request.session['user_id'] = user.id
-            request.session['user_name'] = user.uname
+            request.session['user_name'] = emoji.emojize(user.uname)
             #记录用户登录时间
             ulogin = User_login(ip=get_ip(request),user_id=user.id,time=datetime.datetime.now(),status='login')
             ulogin.save()
