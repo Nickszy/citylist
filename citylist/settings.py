@@ -81,7 +81,8 @@ DATABASES = {
             'HOST': '121.43.41.115',
             'USER':'citylist',
             'PORT':'3306',
-            'PASSWORD':'Citylist!12345'
+            'PASSWORD':'Citylist!12345',
+            'OPTIONS': {'charset': 'utf8mb4'}
         }
     # 'default': {
     #     'ENGINE': 'django.db.backends.sqlite3',
