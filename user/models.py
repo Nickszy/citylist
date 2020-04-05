@@ -20,3 +20,4 @@ class User_login(models.Model):
     user_id = models.IntegerField()
     time = models.CharField(max_length=30)
     status = models.CharField(max_length=10)
+

@@ -11,7 +11,7 @@
 
     <title>{% block title %}城市清单{% endblock %}</title>
   </head>
-  <body>
+  <body style="min-height: 100%">
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script>
@@ -59,7 +59,7 @@
             </form>
                 <ul class="navbar-nav navbar-right pull-right" >
                     {% if request.session.user_name %}
-                        <a class="nav-link" href="">{{ request.session.user_name }}</a>
+                        <a class="nav-link" href="/user/dashboard">{{ request.session.user_name }}</a>
                         <a class="nav-link" href="/user/logout">退出</a>
                     {% else %}
                     <a class="nav-link" href="/user/sign_up">注册</a>
@@ -71,13 +71,28 @@
             </div>
                 </div>
         </nav>
-
+        <div style="min-height: 100%;">
         {% block content %}
 
         {% endblock %}
+        </div>
 
 
-        <footer class="footer navbar-fixed-bottom" >
+
+
+
+  <style>
+      .footer {
+          width: 100%;
+          /* Set the fixed height of the footer here */
+          height: 90px;
+          text-align: center;
+          left: 0;
+          background-color: #e9ecef;
+        }
+  </style>
+  </body>
+<footer class="footer navbar-fixed-bottom">
                 <div class="container">
                       <div class="container">
                           <br>
@@ -87,21 +102,4 @@
                 </div>
 
         </footer>
-
-
-
-  <style>
-      .footer {
-          bottom: 0;
-          width: 100%;
-          /* Set the fixed height of the footer here */
-          height: 90px;
-          text-align: center;
-          {#border-top: .05rem solid #e5e5e5;#}
-          {#    position: absolute;#}
-            left: 0;
-          background-color: #e9ecef;
-        }
-  </style>
-  </body>
 </html>

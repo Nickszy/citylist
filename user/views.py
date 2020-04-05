@@ -86,4 +86,20 @@ def register_views(request):
 
 
 def dashboard(request):
-    return render(request,'user/dashboard.html')
+    if request.session.get('is_login', None):
+        log = User_login.objects.filter(user_id=request.session['user_id'])
+        log_content = {}
+        user_data = User.objects.get(uname=request.session['user_name'])
+        user = {
+            'uname':user_data.uname,
+            'uemail':user_data.uemail,
+            'ugender':user_data.usex,
+        }
+        for i in log:
+            if i.status == 'register':
+                register_time=i.time
+            log_content[i.time] = {
+                'ip': i.ip,
+                'status':i.status
+            }
+    return render(request,'user/dashboard.html',{'content': log_content,'reg_time':register_time[:16],'user':user})
