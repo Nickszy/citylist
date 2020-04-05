@@ -6,6 +6,7 @@ __pycache__/
 # static
 citylist.xlsx
 static
+.idea/
 
 # C extensions
 *.so
@@ -135,3 +136,4 @@ dmypy.json
 notebook/eda.ipynb
 =======
 >>>>>>> 219ee375dcb591760c2f78b9208ba68872725132
+.idea/.gitignore
