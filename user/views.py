@@ -90,7 +90,7 @@ def dashboard(request):
     if request.session.get('is_login', None):
         log = User_login.objects.filter(user_id=request.session['user_id'])
         log_content = {}
-        user_data = User.objects.get(uname=request.session['user_name'])
+        user_data = User.objects.get(uname=emoji.demojize(request.session['user_name']))
         user = {
             'uname':user_data.uname,
             'uemail':user_data.uemail,

@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 {% block title %} {{city.name}}{% endblock %}
+{% block js%}
+    <script src="https://webapi.amap.com/maps?v=1.4.15&key=c2860f5c9b242c1ed9694d7bb304ef30"></script>
+{% endblock %}
 {% block content %}
     <div class="container">
         <div class="jumbotron">
@@ -8,7 +11,6 @@
                     <h1 align="center"> {{city.name}}</h1>
                     <p>人口 ： {{ city.people }}</p>
                     <p> {{ lasttime }}</p>
-
                 </div>
                 <div class="col-sm-6">
                     <img  class="rounded" style="max-width:100%;max-height:auto;" src="../static/img/cityphoto/Shanghai.jpeg" alt="{{city.name}}">
@@ -18,10 +20,35 @@
     </div>
 
     <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div id="daodemap" style="width: 100%;height: 400px;"></div>
+                <script type="text/javascript">
+                    var map = new AMap.Map('daodemap', {
+                       resizeEnable: true,
+                       center:[{{city.lng}}, {{city.lat}}],
+                       zoom:10
+                    });
+                    AMap.plugin('AMap.ToolBar',function(){
+                       var toolbar = new AMap.ToolBar();
+                       map.addControl(toolbar)
+                    })
+                </script>
+            </div>
+            <div class="col-md-4">
+                <div id="scorelist" style="width: 100%; height: 400px;"></div>
+            </div>
+        </div>
 
+    </div>
+
+    <div class="container">
+    <div class="row">
+{#        <div id="bmap" style="width: 100%; height: 400px;"></div>#}
+    </div>
     <div class="row">
         <div class="col-sm-6">
-            <div id="youhao" style="width: 480px; height: 300px;" align="center"></div>
+            <div id="youhao" style="width: 100%;height: 400px;" align="center"></div>
             <script type="text/javascript">
                 var chart = echarts.init(document.getElementById("youhao"));
                 options={
@@ -34,7 +61,7 @@
             </script>
         </div>
         <div class="col-sm-6">
-            <div id="leida" style="width: 600px; height: 400px" align="center"></div>
+            <div id="leida" style="width: 100%; height: 400px;" align="center"></div>
                 <script type="text/javascript">
                     var leida = echarts.init(document.getElementById("leida"));
                     options = {
@@ -146,7 +173,8 @@
         </div>
     </div>
     </div>
-    <div class="container" align="center">
+    </div>
+
         <br>
         <div id="bar" style="width:1000px; height:600px;"></div>
         <script>
@@ -202,36 +230,28 @@
         </script>
     </div>
 <div class="container-fluid">
-    <div id="bmap" style="width: 600px; height: 400px;"></div>
 </div>
         <script type="text/javascript">
-            var bmap = echarts.init(document.getElementById("bmap"));
-            options = {
-                title:{
-                    text: "上海"
-                },
-                bmap: {
-                    // 百度地图中心经纬度
-                    center: [{{city.lng}}, {{city.lat}}],
-                    // 百度地图缩放
-                    zoom: 10,
-                    // 是否开启拖拽缩放，可以只设置 'scale' 或者 'move'
-                    roam: true,
-                    // 百度地图的自定义样式，见 http://developer.baidu.com/map/jsdevelop-11.htm
-                    mapStyle:{style:'dark'}
-                },
-                series: [{
-                    type: 'scatter',
-                    // 使用百度地图坐标系
-                    coordinateSystem: 'bmap',
-                    // 数据格式跟在 geo 坐标系上一样，每一项都是 [经度，纬度，数值大小，其它维度...]
-                    data: [ [120, 30, 1] ]
-                }]
-            };
-            {#var bmap = chart.getModel().getComponent('bmap').getBMap();#}
-            {#bmap.addControl(new BMap.MapTypeControl());#}
-
-            bmap.setOption(options);
+            var score = echarts.init(document.getElementById("scorelist"));
+            var options = {
+            title: {
+                text: 'ECharts 入门示例'
+            },
+            tooltip: {},
+            legend: {
+                data:['销量']
+            },
+            xAxis: {
+                data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+            },
+            yAxis: {},
+            series: [{
+                name: '销量',
+                type: 'bar',
+                data: [5, 20, 36, 10, 10, 20]
+            }]
+        };
+            score.setOption(options);
 
         </script>
 <div id="geo" class="container-fluid" style="width: 600px;height: 400px;"></div>
